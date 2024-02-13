@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import ProjectCard from "./ProjectCards";
+import Preload from '../Pre'
 import Particle from "../Particle";
 import KC from "../../Assets/Projects/KC.png";
 import KA from "../../Assets/Projects/KA.png";
@@ -10,9 +11,27 @@ import AFimart from "../../Assets/Projects/AF.png";
 // import bitsOfCode from "../../Assets/Projects/blog.png";
 
 function Projects() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [width, setWidth] = useState(1200);
+  useEffect(() => {
+    setWidth(window.innerWidth);
+
+    const loadingTimeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 1200);
+
+    // Cleanup the timeout to prevent memory leaks
+    return () => clearTimeout(loadingTimeout);
+  }, []);
+
+  const handleLoadSuccess = () => {
+    console.log("PDF document loaded successfully");
+    // Add any additional code you want to run after the PDF is loaded
+  };
   return (
     <Container fluid className="project-section">
       <Particle />
+      <Preload load={isLoading} />
       <Container>
         <h1 className="project-heading">
           My Recent <strong className="purple">Works </strong>
