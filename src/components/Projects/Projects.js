@@ -18,7 +18,7 @@ function Projects() {
 
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false);
-    }, 1200);
+    }, 5000);
 
     // Cleanup the timeout to prevent memory leaks
     return () => clearTimeout(loadingTimeout);

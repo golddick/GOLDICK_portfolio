@@ -21,7 +21,7 @@ function ResumeNew() {
 
     const loadingTimeout = setTimeout(() => {
       setIsLoading(false);
-    }, 1200);
+    }, 5000);
 
     // Cleanup the timeout to prevent memory leaks
     return () => clearTimeout(loadingTimeout);
@@ -76,6 +76,11 @@ function ResumeNew() {
         }
       
         </Row>
+
+        <div className="pageNumber">
+        <span  className={`defaultN ${currentPage === 1 ? 'active' : ''}`}>1</span>
+        <span className={`defaultN ${currentPage === 2 ? 'active' : ''}`}>2</span>
+        </div>
    
         <Row style={{ justifyContent: "center", position: "relative" }}>
         {currentPage < 2 ? (
